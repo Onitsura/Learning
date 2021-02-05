@@ -1,0 +1,43 @@
+package com.example.changepos;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final String KEY_COUNT = "COUNT";
+    int i =0;
+    TextView count;
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_COUNT, i);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        if (savedInstanceState != null){
+            i = savedInstanceState.getInt(KEY_COUNT, 0);
+
+        }
+        
+
+
+    }
+
+    public void Click(View view) {
+        TextView count = (TextView)findViewById(R.id.count);
+
+        i++;
+        count.setText(Integer.toString(i));
+    }
+
+}
